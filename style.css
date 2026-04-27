@@ -1,0 +1,21 @@
+/* Styling voor de regel die wordt verplaatst */
+.sortable-chosen {
+    background-color: var(--background-modifier-hover);
+    border-radius: 4px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+/* De plek waar de regel gaat landen */
+.sortable-ghost {
+    opacity: 0.3;
+    background-color: var(--interactive-accent) !important;
+}
+
+/* Zorg dat de cursor verandert op desktop */
+.cm-line {
+    cursor: grab;
+}
+
+.cm-line:active {
+    cursor: grabbing;
+}

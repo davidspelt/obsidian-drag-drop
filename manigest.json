@@ -1,0 +1,9 @@
+{
+    "id": "obsidian-drag-drop",
+    "name": "Line Drag and Drop",
+    "version": "1.0.0",
+    "minAppVersion": "0.15.0",
+    "description": "Elke regel versleepbaar maken in de editor.",
+    "author": "Je Naam",
+    "isDesktopOnly": false
+}
