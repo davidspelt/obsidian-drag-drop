@@ -1,13 +1,20 @@
 "use strict";
+
 var obsidian = require('obsidian');
-var Sortable = require('sortablejs');
 
 class UniversalDragAndDrop extends obsidian.Plugin {
     async onload() {
-        console.log('Line Drag and Drop plugin geladen');
+        console.log('Line Drag and Drop geladen');
+        
         this.registerEvent(this.app.workspace.on('layout-change', () => this.setupDragAndDrop()));
         this.registerEvent(this.app.workspace.on('active-leaf-change', () => this.setupDragAndDrop()));
-        this.setupDragAndDrop();
+        
+        // Wacht even tot de editor volledig is opgebouwd
+        this.timeout = window.setTimeout(() => this.setupDragAndDrop(), 1000);
+    }
+
+    onunload() {
+        if (this.timeout) window.clearTimeout(this.timeout);
     }
 
     setupDragAndDrop() {
@@ -19,11 +26,13 @@ class UniversalDragAndDrop extends obsidian.Plugin {
 
         editorEl.classList.add('sjs-enabled');
 
+        // Gebruik de Sortable library die vaak al in de Obsidian context aanwezig is
+        const Sortable = require('sortablejs');
+
         Sortable.create(editorEl, {
             animation: 150,
             draggable: '.cm-line',
             handle: '.cm-line', 
-            // Vertraging op touch voorkomt dat je per ongeluk sleept tijdens het scrollen
             delay: 200, 
             delayOnTouchOnly: true,
             touchStartThreshold: 5,
