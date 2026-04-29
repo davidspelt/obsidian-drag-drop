@@ -1,4 +1,4 @@
-/* Ruimte maken voor het handvat */
+/* Ruimte voor de handvaten */
 .sjs-enabled .cm-content {
     padding-left: 30px !important;
 }
@@ -7,7 +7,7 @@
     position: relative;
 }
 
-/* De basis styling van het drag-icoontje (⠿) */
+/* De basis van het icoontje */
 .sjs-enabled .cm-line::before {
     content: "⠿";
     position: absolute;
@@ -23,30 +23,23 @@
     -webkit-user-select: none;
 }
 
-/* --- DESKTOP: Alleen tonen als je er met de muis overheen gaat --- */
+/* COMPUTER: Alleen bij hover */
 @media (any-hover: hover) {
     .sjs-enabled .cm-line::before {
         opacity: 0;
     }
-    
     .sjs-enabled .cm-line:hover::before {
         opacity: 1;
         cursor: grab;
     }
 }
 
-/* --- MOBIEL: Altijd zichtbaar omdat je geen hover hebt --- */
+/* MOBIEL: Altijd zichtbaar */
 @media (any-hover: none) {
     .sjs-enabled .cm-line::before {
         opacity: 0.7;
         color: var(--interactive-accent);
     }
-}
-
-/* Visuele feedback tijdens het slepen */
-.sortable-chosen {
-    background-color: var(--background-modifier-hover) !important;
-    border-radius: 4px;
 }
 
 .sortable-ghost {
