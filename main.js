@@ -21,12 +21,13 @@ class UniversalDragAndDrop extends obsidian.Plugin {
         Sortable.create(editorEl, {
             animation: 150,
             draggable: '.cm-line',
-            // We richten ons op het icoontje, maar de hele regel is de handle
-            handle: '.cm-line', 
-            delay: 150, // Iets kortere delay voor snellere reactie
+            handle: '.cm-line',
+            delay: 150,
             delayOnTouchOnly: true,
-            touchStartThreshold: 10, // Voorkomt "bibberen" bij starten
-            swapThreshold: 0.65, // Maakt het wisselen van regels makkelijker
+            touchStartThreshold: 10,
+            forceFallback: true, // Houdt de weergave stabiel tijdens het slepen
+            fallbackClass: "sortable-fallback",
+            ghostClass: "sortable-ghost",
             onEnd: async (evt) => {
                 const { oldIndex, newIndex } = evt;
                 if (oldIndex === newIndex || oldIndex === undefined || newIndex === undefined) return;
@@ -34,10 +35,8 @@ class UniversalDragAndDrop extends obsidian.Plugin {
                 const file = activeView.file;
                 const content = await this.app.vault.read(file);
                 const lines = content.split('\n');
-                
                 const [movedLine] = lines.splice(oldIndex, 1);
                 lines.splice(newIndex, 0, movedLine);
-                
                 await this.app.vault.modify(file, lines.join('\n'));
             }
         });
