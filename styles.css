@@ -1,48 +1,54 @@
-/* Ruimte voor de handvaten */
+/* Ruimte voor de handvaten aan de linkerkant */
 .sjs-enabled .cm-content {
-    padding-left: 30px !important;
+    padding-left: 45px !important; /* Meer marge toegevoegd */
 }
 
 .sjs-enabled .cm-line {
     position: relative;
+    transition: background-color 0.2s ease;
 }
 
-/* De basis van het icoontje */
+/* De icoontjes */
 .sjs-enabled .cm-line::before {
     content: "⠿";
     position: absolute;
-    left: -25px;
-    width: 20px;
+    left: -35px; /* Verder naar links van de tekst */
+    width: 30px;
     height: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
     color: var(--text-faint);
-    transition: opacity 0.2s ease;
     user-select: none;
     -webkit-user-select: none;
+    cursor: grab;
 }
 
-/* COMPUTER: Alleen bij hover */
+/* Verberg de Obsidian "Type '/' for commands" tijdens het slepen */
+.sortable-chosen .cm-placeholder {
+    display: none !important;
+}
+
+/* Desktop hover effect */
 @media (any-hover: hover) {
-    .sjs-enabled .cm-line::before {
-        opacity: 0;
-    }
-    .sjs-enabled .cm-line:hover::before {
-        opacity: 1;
-        cursor: grab;
-    }
+    .sjs-enabled .cm-line::before { opacity: 0; }
+    .sjs-enabled .cm-line:hover::before { opacity: 1; }
 }
 
-/* MOBIEL: Altijd zichtbaar */
+/* Mobiele styling */
 @media (any-hover: none) {
     .sjs-enabled .cm-line::before {
-        opacity: 0.7;
+        opacity: 0.8;
         color: var(--interactive-accent);
     }
 }
 
+/* Visuele feedback tijdens slepen */
+.sortable-chosen {
+    background-color: var(--background-modifier-hover) !important;
+}
+
 .sortable-ghost {
-    opacity: 0.3;
+    opacity: 0.2;
     background-color: var(--interactive-accent) !important;
 }
