@@ -1,18 +1,17 @@
-/* Ruimte voor de handvaten aan de linkerkant */
+/* Meer ruimte links voor de handvaten */
 .sjs-enabled .cm-content {
-    padding-left: 45px !important; /* Meer marge toegevoegd */
+    padding-left: 50px !important;
 }
 
 .sjs-enabled .cm-line {
-    position: relative;
-    transition: background-color 0.2s ease;
+    position: relative !important;
 }
 
-/* De icoontjes */
+/* De drag-handles (⠿) */
 .sjs-enabled .cm-line::before {
     content: "⠿";
     position: absolute;
-    left: -35px; /* Verder naar links van de tekst */
+    left: -40px; /* Icoontje staat nu ruim links van je checkbox */
     width: 30px;
     height: 100%;
     display: flex;
@@ -21,18 +20,12 @@
     color: var(--text-faint);
     user-select: none;
     -webkit-user-select: none;
-    cursor: grab;
+    pointer-events: none;
 }
 
-/* Verberg de Obsidian "Type '/' for commands" tijdens het slepen */
-.sortable-chosen .cm-placeholder {
+/* Verberg placeholder tekst tijdens slepen */
+.sortable-fallback .cm-placeholder {
     display: none !important;
-}
-
-/* Desktop hover effect */
-@media (any-hover: hover) {
-    .sjs-enabled .cm-line::before { opacity: 0; }
-    .sjs-enabled .cm-line:hover::before { opacity: 1; }
 }
 
 /* Mobiele styling */
@@ -43,12 +36,14 @@
     }
 }
 
-/* Visuele feedback tijdens slepen */
-.sortable-chosen {
-    background-color: var(--background-modifier-hover) !important;
+/* Visuele feedback tijdens het slepen */
+.sortable-ghost {
+    opacity: 0.1 !important;
 }
 
-.sortable-ghost {
-    opacity: 0.2;
-    background-color: var(--interactive-accent) !important;
+.sortable-fallback {
+    background: var(--background-primary) !important;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    opacity: 0.9 !important;
+    border-radius: 4px;
 }
