@@ -1,21 +1,55 @@
-/* Styling voor de regel die wordt verplaatst */
-.sortable-chosen {
-    background-color: var(--background-modifier-hover);
-    border-radius: 4px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+/* Ruimte maken voor het handvat */
+.sjs-enabled .cm-content {
+    padding-left: 30px !important;
 }
 
-/* De plek waar de regel gaat landen */
+.sjs-enabled .cm-line {
+    position: relative;
+}
+
+/* De basis styling van het drag-icoontje (⠿) */
+.sjs-enabled .cm-line::before {
+    content: "⠿";
+    position: absolute;
+    left: -25px;
+    width: 20px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-faint);
+    transition: opacity 0.2s ease;
+    user-select: none;
+    -webkit-user-select: none;
+}
+
+/* --- DESKTOP: Alleen tonen als je er met de muis overheen gaat --- */
+@media (any-hover: hover) {
+    .sjs-enabled .cm-line::before {
+        opacity: 0;
+    }
+    
+    .sjs-enabled .cm-line:hover::before {
+        opacity: 1;
+        cursor: grab;
+    }
+}
+
+/* --- MOBIEL: Altijd zichtbaar omdat je geen hover hebt --- */
+@media (any-hover: none) {
+    .sjs-enabled .cm-line::before {
+        opacity: 0.7;
+        color: var(--interactive-accent);
+    }
+}
+
+/* Visuele feedback tijdens het slepen */
+.sortable-chosen {
+    background-color: var(--background-modifier-hover) !important;
+    border-radius: 4px;
+}
+
 .sortable-ghost {
     opacity: 0.3;
     background-color: var(--interactive-accent) !important;
-}
-
-/* Zorg dat de cursor verandert op desktop */
-.cm-line {
-    cursor: grab;
-}
-
-.cm-line:active {
-    cursor: grabbing;
 }
