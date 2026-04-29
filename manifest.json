@@ -1,9 +1,9 @@
 {
-    "id": "obsidian-drag-drop",
+    "id": "obsidian-drag-drop-plugin",
     "name": "Line Drag and Drop",
-    "version": "1.0.0",
+    "version": "1.0.6",
     "minAppVersion": "0.15.0",
-    "description": "Elke regel versleepbaar maken in de editor.",
+    "description": "Drag and drop lines in the editor. Visible handles on mobile, hover handles on desktop.",
     "author": "David Spelt",
     "isDesktopOnly": false
 }
