@@ -3,14 +3,24 @@ name: Release Plugin
 on:
   push:
     tags:
-      - "*" # Dit wordt geactiveerd bij elke nieuwe tag
+      - "*"
 
 jobs:
   build:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     steps:
       - name: Checkout
         uses: actions/checkout@v3
+
+      - name: Update manifest version
+        run: |
+          # Pak de tag naam (bijv. 1.1.5)
+          TAG_NAME=${GITHUB_REF#refs/tags/}
+          # Gebruik 'jq' om de versie in manifest.json te updaten
+          jq ".version = \"$TAG_NAME\"" manifest.json > manifest.tmp && mv manifest.tmp manifest.json
+          echo "Manifest geüpdatet naar $TAG_NAME"
 
       - name: Create Release
         id: create_release
